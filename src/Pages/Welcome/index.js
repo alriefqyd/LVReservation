@@ -1,25 +1,32 @@
 import React from 'react'
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import { colors } from '../../utils';
 import { StandardButton } from '../../component';
-import { logoVale } from '../../assets';
+import { WelcomeSvg, logoVale } from '../../assets';
 
-const Welcome = () => {
+
+
+const Welcome = ({navigation}) => {
+
+  const navigate = (destination) => {
+    navigation.navigate(destination);
+  } 
+
   return (
     <View style={styles.wrapper.page}> 
     {/* flex 1 untuk membuat tinggi memenuhi sisa layar hp */}
         <View>
           <Image source={logoVale} style={styles.image.logo}></Image>
         </View>
-      <View style={styles.image.svg}>
-      
+      <View>
+        <WelcomeSvg style={styles.image.svg}></WelcomeSvg>
       </View>
       <Text style={styles.text.welcome}>Welcome in LV Reservation</Text>
       <View
         style={styles.wrapper.line}
       />
-      <StandardButton text="Login" marginTop={74}/>
-      <StandardButton text="Register" marginTop={18}/>
+      <StandardButton text="Login" marginTop={74} onPressProps={() => navigate('Login')}/>
+      <StandardButton text="Register" marginTop={18} onPressProps={() => navigate('Register')}/>
     </View>
   )
 }
@@ -48,7 +55,7 @@ const styles = {
     svg : {
       height:228,
       width:262,
-      backgroundColor:colors.standard,
+      // backgroundColor:colors.standard,
       marginHorizontal:70,
       marginTop:77
     }

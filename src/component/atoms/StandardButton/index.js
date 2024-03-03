@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 
 
-const StandardButton = (props) => {
+const StandardButton = ({marginTop, text, onPressProps}) => {
     return (
       <TouchableOpacity style={{
           width:259,
@@ -10,18 +10,18 @@ const StandardButton = (props) => {
           backgroundColor:'#01929A',
           borderRadius:15,
           alignSelf:'center',
-          marginTop:props.marginTop
-        }}>
+          marginTop:marginTop
+        }} onPress={onPressProps}>
           <Text style={{
             alignContent:'center',
             textAlign:'center',
             paddingVertical:12,
             fontWeight:'bold',
             fontSize:14,
-            fontFamily:'robot',
+            fontFamily:'roboto',
             color:'#FFFF'
   
-          }}>{props.text}</Text>
+          }}>{text}</Text>
         </TouchableOpacity>
     )
   }
