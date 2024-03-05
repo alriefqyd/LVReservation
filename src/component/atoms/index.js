@@ -1,3 +1,4 @@
 import StandardButton from "./StandardButton";
+import Input from "./Input";
 
-export {StandardButton}
+export {StandardButton, Input}
