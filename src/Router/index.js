@@ -7,9 +7,9 @@ const Router = () => {
     const Stack = createNativeStackNavigator();
   return (
     <SafeAreaProvider>
-    <Stack.Navigator initialRouteName='Register'>
+    <Stack.Navigator initialRouteName='Welcome'>
       <Stack.Screen name="Splash" component={Splash} options={{hederShown:false}}/>
-      <Stack.Screen name="Login" component={Login}/>
+      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
       <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
       <Stack.Screen name="Welcome" component={Welcome} options={{
         headerShown:false,

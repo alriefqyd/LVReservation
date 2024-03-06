@@ -1,34 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
 import { Input, StandardButton } from '../../component'
 import { LeftArrowSvg, RegisterSvg } from '../../assets'
 import { colors } from '../../utils'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setForm } from '../../redux'
 
 const Register = ({navigation}) => {
-  const registerReducer = useSelector(state => state.registerReducer)
+  // const registerReducer = useSelector(state => state.registerReducer) // disini dia tau kalu reducer mana yang dipake untuk update state. sepaket karena diatas importnya di object yang sama
+  // code diatas restrukturisasi jadi seperti dibawah
+  const {form, text, name} = useSelector(state => state.registerReducer)
+  // karena registerReducer itu object yang isinya form text dan name maka kita bisa pakai cara diatas
+  // kita panggil form dari object registerreducer sehingga bisa lansung dipake. nda usah registerReducer.form
+  // sama dengan text dan name
+  const dispatch = useDispatch(); // digunakan untuk melakukan update state global di reducer js
 
   const navigateWelcome = () =>{
     navigation.navigate('Welcome')
   }
 
-  const [form, setForm] = useState({
-    fullName : '',
-    badgeNumber : '',
-    password:''
-  })
-
   const sendData = () => {
-      console.log(form);
+     console.log(form)
   }
 
   const setFormValue = (value, input) => {
     // disini dia set state dengan cara copy state form yang sudah ada (...form) terus ubah sesuai dengan key yang ada di baris bawah
     // [input] itu dia jadi key atai identifier object mana yang mau diubah. makanya di textInput ada props panggil fungsi dengan parameter kedua itu identifier
-    setForm({ 
-      ...form,
-      [input] : value,
-    })
+      dispatch(setForm(input, value))
   }
 
   return (
@@ -39,7 +37,7 @@ const Register = ({navigation}) => {
       <RegisterSvg style={styles.svg} />
       
       <View style={styles.wrapperText}>
-        <Text style={styles.text}>{registerReducer.text} {registerReducer.name}</Text>
+        <Text style={styles.text}>{text}</Text>
         <View style={styles.form}>
           <Input title="Full Name" placeholder="type your full name" value={form.fullName} onChangeText={ e => setFormValue(e, 'fullName')}/>  
           <View style={{height:33}}/>
