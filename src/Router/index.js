@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
-import { Login, Register, Splash, Welcome } from '../Pages';
+import { Login, Register, Splash, Welcome, Home } from '../Pages';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Router = () => {
@@ -14,6 +14,9 @@ const Router = () => {
       <Stack.Screen name="Welcome" component={Welcome} options={{
         headerShown:false,
         }}/>
+      <Stack.Screen name="Home" component={Home} options={{
+        headerShown:false,
+      }}/>
     </Stack.Navigator>
     </SafeAreaProvider>
     
